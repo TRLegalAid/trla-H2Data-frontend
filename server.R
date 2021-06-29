@@ -444,6 +444,8 @@ shinyServer(function(input, output, session) {
   
   ###--------Render Datatables for Case Number Search--------###
   
+  #Keep results empty until the user has actually searched
+  
   observeEvent(input$case_num, {
     shinyjs::showElement(id = "basic_case_num")
   }, ignoreInit = TRUE, ignoreNULL = TRUE)
@@ -457,7 +459,8 @@ shinyServer(function(input, output, session) {
   }, ignoreInit = TRUE, ignoreNULL = TRUE)
   
   
-
+  #Allow user to add additional variables
+  
   filtered_variables2 <-reactive({
     if(is.null(input$columns2)){
       fwdata %>%
@@ -574,9 +577,11 @@ shinyServer(function(input, output, session) {
       fwdata %>%
         select(c(all_of(default_columns))) %>%
         filter(str_detect(tolower(EMPLOYER_NAME), tolower(!!input$emp)))
+      
     } else if(input$columns3 %in% "All"){
       fwdata %>%
         filter(str_detect(tolower(EMPLOYER_NAME), tolower(!!input$emp)))
+    
     } else {
       fwdata %>%
         select(c(all_of(default_columns), input$columns3)) %>%
@@ -693,10 +698,14 @@ shinyServer(function(input, output, session) {
         filter(WORKSITE_STATE == local(input$state) & `Visa type` == "H-2A") %>%
         collect() %>%
         left_join(STATES_matching, by = c("WORKSITE_STATE" = "State")) %>%
+        
+        #This function is defined in set-up.R; it is an indicator for whether the job is active in the selected month
         append_month(month_name = local(input$month), year = local(input$year), df = .)
+      
     })
     
     fw_state <- reactive({
+      
     fwdata_state_counts <- fw_state1() %>%
       group_by(WORKSITE_COUNTY, WORKSITE_STATE) %>%
       summarise(Month_sum = sum(month_Active),
