@@ -14,15 +14,6 @@ All you'll really need is the 'config.yml' file with database credentials! Packa
 
 All help documentation is housed with the gethelptrla@gmail.com Google drive.
 
-## things that were hard for me to figure out
-
-A few resources to explain the aspects of the app that were most difficult for me to figure out on my own.
-
-### pulling from a database into a shiny app
-
-### multi-step filtering
-
-### toggling visibility of a feature
-
+Additional resources located in the Notebook!
 
 
