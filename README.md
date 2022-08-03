@@ -20,7 +20,7 @@ Additional resources located in the Data&Maps SharePoint Notebook!
 
 From RStudio, click "Run App" in the top right-hand corner to test changes locally. When you're ready to deploy, click the drop-down arrow of the "Republish" button and choose your deployment destination.
 
-If it's the first time you are deploying, you'll be prompted to log in to shinyapps.io. Sign in with Google using the gethelptral@gmail.com account.
+If it's the first time you are deploying, you'll be prompted to log in to shinyapps.io. Choose the "Sign in with Google" option and use the gethelptral@gmail.com account credentials in Dashlane.
 
 If you're making a complicated change and want to make sure it works as expected when deployed, or want someone else to test it before deploying to trla.shinyapps.io/H2Data/, you can deploy to trla.shinyapps.io/trla-H2Data-frontend/ as a test site. Otherwise, set the destination to H2Data and replace the current app with your changes.
 
