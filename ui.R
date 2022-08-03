@@ -35,19 +35,19 @@ navbarPage("H2Data",
              div(fluidRow(column(12, 
                                  
                                  #Note where R-version of html is used
-                                 
-                                 wellPanel(
-                                   
-                                   tags$strong("January 5th, 2022: Due to recent changes to the DOL data portal, the data in this tool is incomplete for jobs posted after November 18th, 2021."),
-                                   "We are working to update the data in this tool as soon as possible and will post updates to this page. 
-                                           Complete data for jobs posted since November 18th, 2021 can still be accessed and downloaded from",
-                                   
-                                   tags$a(href = "https://spotlight.tcbmi.com/",
-                                          "https://spotlight.tcbmi.com/.", target = "_blank"),
-                                   
-                                   
-                                   align = "center"
-                                 ),
+                                 # 
+                                 # wellPanel(
+                                 #   
+                                 #   tags$strong("January 5th, 2022: Due to recent changes to the DOL data portal, the data in this tool is incomplete for jobs posted after November 18th, 2021."),
+                                 #   "We are working to update the data in this tool as soon as possible and will post updates to this page. 
+                                 #           Complete data for jobs posted since November 18th, 2021 can still be accessed and downloaded from",
+                                 #   
+                                 #   tags$a(href = "https://spotlight.tcbmi.com/",
+                                 #          "https://spotlight.tcbmi.com/.", target = "_blank"),
+                                 #   
+                                 #   
+                                 #   align = "center"
+                                 # ),
                                  
                                  wellPanel(h2("This is a tool designed for farmworker advocates .", align = "center"),
                                            br(),
