@@ -84,6 +84,13 @@ navbarPage("H2Data",
     tabPanel("H-2A Worker Map",
              sidebarLayout(
                div(sidebarPanel(
+                 
+                 # add an option to toggle housing or worksite for the county assignment
+                 
+                 selectInput("toggle",
+                             "Housing County or Worksite County",
+                             choices = c("Worksite", "Housing"))
+                 ,
                  selectInput("month",
                              "Select Month",
                              choices = c(months$month))
@@ -95,6 +102,7 @@ navbarPage("H2Data",
                  selectInput("state",
                              "Select State",
                              choices = c(STATES_matching$State))
+                 
                ), style = "max-width:750px"),
                
                # Show the map
@@ -262,7 +270,7 @@ navbarPage("H2Data",
 
 #--------Tab 3.c: Search by H-2A Employer (allows user to search employer name in both basic data and add'l employer addendum data)--------
 
-  tabPanel("Search H-2A Employers", 
+  tabPanel("Search by Employer", 
            value = "emp",
            fluid = TRUE,
            div(wellPanel(

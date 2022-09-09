@@ -17,14 +17,14 @@ list(bsCollapse(
                   br(),
 
                   "For each quarter of the fiscal year, the Office of Foreign Labor Certification
-                  (OFLC) releases a large dataset that includes many details about every job order
+                  (OFLC) releases a large dataset that includes many additional details about every job order
                   filed. We'll refer to this as \"quarterly disclosure data.\"",
 
                   br(),
                   br(),
 
-                  "Each data source has its own advantages and disadvantages.
-                  Scraping the data daily and compling it here is helpful, because
+                  "Each data source has advantages and disadvantages.
+                  Scraping the data daily and compiling it here is helpful because
                   if you want to get information about multiple job postings and
                   organize it in a CSV or run any sort of analysis, the existing tools
                   either require manually copying information or waiting until
@@ -33,9 +33,9 @@ list(bsCollapse(
                   br(),
                   br(),
 
-                  "The quarterly disclosure data, on the other hand,
+                  "The quarterly disclosure data
                   contains much more detailed information, like the locations
-                  of additional housing sites and additional worksites.",
+                  of additional housing sites and additional worksites, but is not available immediately.",
 
                   br(),
                   br(),
@@ -50,19 +50,16 @@ list(bsCollapse(
                   style = "success")
   ,
 
-  bsCollapsePanel(title = "What kind of information can I get from this data?",
+  bsCollapsePanel(title = "What information can I get from this data?",
 
                   "Every piece of information in these data files can be called a \"variable.\"
-                  The quarterly disclosure data has over 100 variables,
-                  so we can't list them all here. But they include information
-                  such as employer information, attorney/agent information,
-                  information about the job, housing locations,
-                  worksite locations, job requirements...the list goes on!",
+                  The quarterly disclosure data has over 100 variables, including information about the employer, 
+                  attorney/agent, the job and job requirements, housing locations, worksite locations...the list goes on!",
 
                   br(),
                   br(),
 
-                  "You can read the detailed definitions of each variable in
+                  "You can read the detailed descriptions of each variable in
                   the quarterly disclosure data",
 
                   tags$a(href = "https://www.dol.gov/agencies/eta/foreign-labor/performance",
@@ -75,15 +72,14 @@ list(bsCollapse(
                   br(),
 
                   "The data that is scraped daily does not have as many variables
-                  as the quarterly disclosure data, because we don't have access
-                  to as much information. But, the scraped data does contain some
-                  information that we cannot learn from the quarterly disclosure data.
+                  as the quarterly disclosure data, but it does contain some
+                  information that we do not get from the quarterly disclosure data.
                   This includes a detailed job description.",
 
                   br(),
                   br(),
 
-                  "You can read a list of the variables that we are able to scrape
+                  "You can read a list of the variables that we scrape
                   from the Seasonal Jobs website each day ",
 
                   tags$a(href="https://docs.google.com/document/d/e/2PACX-1vQZORwe_e2LGec93_9T-bB8QZbso1BFtW1FFZMc6FTJ2Xyl1FIYtzxTrOsWmU8Ekg/pub",
@@ -123,56 +119,95 @@ list(bsCollapse(
                   br(),
                   br(),
 
-                  "If you want to only see data that comes directly from DOL/OFLC,
-                  check the box that says \"Exclude Scraped Data & See DOL Data Only.\"",
+                  # "If you want to only see data that comes directly from DOL/OFLC,
+                  # check the box that says \"Exclude Scraped Data & See DOL Data Only.\"",
+                  # 
+                  # br(),
+                  # br(),
+                  # 
+                  # "Remember, the scraped data has a limited amount of information.
+                  # If you are doing research that requires detailed fields such as
+                  # \"Sunday Hours,\" then you may want to look only at
+                  # (not necessarily quite as recent) DOL data by checking that box.",
+                  # 
+                  # br(),
+                  # br(),
 
-                  br(),
-                  br(),
-
-                  "Remember, the scraped data has a limited amount of information.
-                  If you are doing research that requires detailed fields such as
-                  \"Sunday Hours,\" then you may want to look only at
-                  (not necessarily quite as recent) DOL data by checking that box.",
-
-                  br(),
-                  br(),
-
-                  actionButton("toBasic", "Go to Basic Search"),
+                  actionButton("toBasic", "Search All Data"),
 
                   style = "success"),
 
-  bsCollapsePanel(title = "H-2A Search Options",
-                  "There are two additional search options. They both are only applicable to H-2A jobs.",
+  # bsCollapsePanel(title = "H-2A Search Options",
+  #                 "There are two additional search options. They both are only applicable to H-2A jobs.",
+  # 
+  #                 br(),
+  #                 br(),
+  # 
+  #                 "The first option allows you to search all or part of an employer's name. Some employers come up under the \"Additional Worksites\"
+  #                       table, so they are not always evident in a basic disclosure data search.",
+  #                 
+  #                 br(),
+  #                 br(),
+  #                 
+  #                 "The first allows you to search by a case number to see and download additional housing and worksites associated with the case.",
+  # 
+  # 
+  #                 br(),
+  #                 br(),
+  # 
+  #                 actionButton("toAdv2", "Search by Employer"),
+  # 
+  #                 br(),
+  #                 br(),
+  # 
+  #                 actionButton("toAdv1", "Search Additional H-2A Housing and Employers"),
+  # 
+  #                 style = "success"),
+  
 
-                  br(),
-                  br(),
-
-                  "The first option allows you to search all or part of an employer's name. Some employers come up under the \"Additional Worksites\"
-                        table, so they are not always evident in a basic disclosure data search.",
+  
+  bsCollapsePanel(title = "Search Clearance Orders > Search by Employer",
+                  
+                  "This option allows you to search all or part of an employer's name to find all associated clearance orders. 
+                  Some employers only appear under the \"Additional Worksites\"
+                        table, and are not always evident in a basic disclosure data search.",
+                  
                   
                   br(),
                   br(),
                   
-                  "The first allows you to search by a case number to see and download additional housing and worksites associated with the case.",
-
-
-                  br(),
-                  br(),
-
                   actionButton("toAdv2", "Search by Employer"),
-
+                  
                   br(),
                   br(),
-
-                  actionButton("toAdv1", "Search Additional H-2A Housing and Employers"),
-
+                  
+                  
                   style = "success"),
+  
+  
+  bsCollapsePanel(title = "Search Clearance Orders > Search Additional H-2A Housing and Employers",
+                  
+                  "This option you to search an H-2A case number to see and download additional housing and worksites associated with that case.",
+                  
+                  
+                  br(),
+                  br(),
+                  
+                  actionButton("toAdv1", "Search Additional H-2A Housing and Employers"),
+                  
+                  br(),
+                  br(),
+                  
+                  
+                  style = "success"),
+  
+  
 
-  bsCollapsePanel(title = "This sounds complicated...",
-
-  "You're not wrong. There's a lot going on with this data.
-                                      We suggest that you start with a basic search, look through the additional variables that you can add,
-                                      and hover over a help button if you ever need some extra guidance.", style = "success"),
+  # bsCollapsePanel(title = "This sounds complicated...",
+  # 
+  # "You're not wrong. There's a lot going on with this data.
+  #                                     We suggest that you start with a basic search, look through the additional variables that you can add,
+  #                                     and hover over a help button if you ever need some extra guidance.", style = "success"),
 
   #bsCollapsePanel(title = "Resources", "Coming soon!", style = "success"),
 

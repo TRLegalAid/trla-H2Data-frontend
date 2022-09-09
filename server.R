@@ -694,6 +694,10 @@ shinyServer(function(input, output, session) {
   #Data for table that is shown on screen, summary numbers
   
     fw_state1 <- reactive({
+      
+      if (local(input$toggle == "Worksite")) {
+      
+      
       fwdata %>%
         filter(WORKSITE_STATE == local(input$state) & `Visa type` == "H-2A") %>%
         collect() %>%
@@ -702,9 +706,27 @@ shinyServer(function(input, output, session) {
         #This function is defined in set-up.R; it is an indicator for whether the job is active in the selected month
         append_month(month_name = local(input$month), year = local(input$year), df = .)
       
+      
+      } else {
+        
+      
+      fwdata %>% 
+        filter(HOUSING_STATE == local(input$state) & `Visa type` == "H-2A") %>%
+        collect() %>%
+        left_join(STATES_matching, by = c("HOUSING_STATE" = "State")) %>%
+        
+        append_month(month_name = local(input$month), year = local(input$year), df = .)
+        
+      }
+      
     })
     
+    
+    
     fw_state <- reactive({
+      
+      if (local(input$toggle == "Worksite")) {
+        
       
     fwdata_state_counts <- fw_state1() %>%
       group_by(WORKSITE_COUNTY, WORKSITE_STATE) %>%
@@ -717,6 +739,26 @@ shinyServer(function(input, output, session) {
       filter(`Total Jobs Active This Month` > 0) %>%
       arrange(desc(`Total Workers for Jobs Active This Month`)) %>%
       select(-c("Abb"))
+    
+    
+      } else {
+        
+        
+        
+        fwdata_state_counts <- fw_state1() %>%
+          group_by(HOUSING_COUNTY, HOUSING_STATE) %>%
+          summarise(Month_sum = sum(month_Active),
+                    Month_count = sum(month_Number)) %>%
+          mutate(HOUSING_COUNTY = str_to_upper(HOUSING_COUNTY)) %>%
+          left_join(STATES_matching, by = c("HOUSING_STATE" = "State")) %>%
+          rename("County" = "HOUSING_COUNTY", "State" = "HOUSING_STATE", "Total Workers for Jobs Active This Month" = "Month_sum",
+                 "Total Jobs Active This Month" = "Month_count") %>%
+          filter(`Total Jobs Active This Month` > 0) %>%
+          arrange(desc(`Total Workers for Jobs Active This Month`)) %>%
+          select(-c("Abb"))
+        
+        
+      }
     
     })
     
@@ -735,10 +777,26 @@ shinyServer(function(input, output, session) {
   #Data for table shown in modal dialogue -- contains detailed job order info
   
   job_orders_filt <- reactive({
+    
+    if (local(input$toggle == "Worksite")) {
+      
+    
     info = input$map_table_cell_clicked
     fw_state1() %>%
       filter(WORKSITE_COUNTY == info$value & month_Number > 0 & WORKSITE_STATE == local(input$state)) %>%
       select(c(all_of(default_columns),all_of(col_housing),all_of(col_worksite),"TOTAL_WORKERS_NEEDED"))
+    
+    } else {
+      
+      
+      info = input$map_table_cell_clicked
+      fw_state1() %>%
+        filter(HOUSING_COUNTY == info$value & month_Number > 0 & HOUSING_STATE == local(input$state)) %>%
+        select(c(all_of(default_columns),all_of(col_housing),all_of(col_worksite),"TOTAL_WORKERS_NEEDED"))
+      
+      
+  } 
+  
   })
 
   #Button so that job order data can be downloaded
