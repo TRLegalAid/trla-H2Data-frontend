@@ -267,33 +267,33 @@ shinyServer(function(input, output, session) {
       filter(EMPLOYMENT_END_DATE >= local(input$date_end[1]) & EMPLOYMENT_END_DATE <= local(input$date_end[2]))
   })
   
-  ##--------DOL Data Only--------##
-  
-  filtered_check <- reactive({
-    
-    if(local(input$quarterly) == TRUE){
-    filtered_end() %>%
-        filter(Source == "DOL")
-    }
-    
-    else{
-      filtered_end()
-    }
-  
-  })
-  
-  ##--------Scraped Data Only--------##
-  
-  filtered_check2 <- reactive({
-    if(local(input$scraped) == TRUE){
-      filtered_check() %>%
-        filter(Source == "Apify")
-    }
-    else{
-      filtered_check()
-    }
-  })
-  
+  # ##--------DOL Data Only--------##
+  # 
+  # filtered_check <- reactive({
+  #   
+  #   if(local(input$quarterly) == TRUE){
+  #   filtered_end() %>%
+  #       filter(Source == "DOL")
+  #   }
+  #   
+  #   else{
+  #     filtered_end()
+  #   }
+  # 
+  # })
+  # 
+  # ##--------Scraped Data Only--------##
+  # 
+  # filtered_check2 <- reactive({
+  #   if(local(input$scraped) == TRUE){
+  #     filtered_check() %>%
+  #       filter(Source == "Apify")
+  #   }
+  #   else{
+  #     filtered_check()
+  #   }
+  # })
+  # 
 
   ###--------Execute when 'view' button is pressed--------###
   
@@ -301,7 +301,7 @@ shinyServer(function(input, output, session) {
   
   fully_filtered <- eventReactive(input$view, {
     
-    filtered_check2() %>%
+    filtered_end() %>%
       
       #This pulls the abstract data down into an actual dataframe
       collect() %>%

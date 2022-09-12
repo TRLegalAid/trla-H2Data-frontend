@@ -231,9 +231,9 @@ navbarPage("H2Data",
                        width = "50%",
                        format = "mm/dd/yy"),
         
-       checkboxInput("quarterly", "Exclude Scraped Data", value = FALSE),
-       
-       checkboxInput("scraped", "Exclude DOL Data", value = FALSE),
+       # checkboxInput("quarterly", "Exclude Scraped Data", value = FALSE),
+       # 
+       # checkboxInput("scraped", "Exclude DOL Data", value = FALSE),
         
         
         br(),
