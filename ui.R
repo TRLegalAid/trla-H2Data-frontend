@@ -212,6 +212,8 @@ navbarPage("H2Data",
         
         dateRangeInput("date_posted",
                        "Job posted between:",
+                       # start = today_last_year,
+                       # end = today,
                        start = as.Date(earliest_posted),
                        end = as.Date(latest_posted),
                        width = "50%",
@@ -234,7 +236,7 @@ navbarPage("H2Data",
        # checkboxInput("quarterly", "Exclude Scraped Data", value = FALSE),
        # 
        # checkboxInput("scraped", "Exclude DOL Data", value = FALSE),
-        
+
         
         br(),
         

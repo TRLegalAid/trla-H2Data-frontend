@@ -40,6 +40,10 @@ WHERE "Source" = \'DOL\' AND "Visa type" = \'H-2A\' AND ("ADDENDUM_B_WORKSITE_AT
 
 #--------Create defaults for dates for the Search All Data section--------
 
+today <- Sys.Date()
+today_last_year <- Sys.Date() %m-% years(1)
+
+
 earliest_posted <- dbGetQuery(con, 'SELECT MIN("RECEIVED_DATE") FROM (SELECT "RECEIVED_DATE" FROM job_central UNION ALL SELECT "RECEIVED_DATE" FROM low_accuracies) "q01";')
 earliest_posted <- earliest_posted$min 
 

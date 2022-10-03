@@ -45,13 +45,13 @@ shinyServer(function(input, output, session) {
       need(input$Worksite_ST != "", "Please select a worksite state.")
     )
     
-    if(input$Worksite_ST %in% "All"){
-      
+    if("All" %in% input$Worksite_ST){
+
       fwdata
-      
-    } 
+
+    }
     else {
-      
+
       fwdata  %>%
         
         # %in% allows for us to filter for things in a whole vector of options, rather than just equal to one thing
@@ -190,7 +190,7 @@ shinyServer(function(input, output, session) {
           select(c(all_of(default_columns)))
         
       #The data up to this point still has all columns. IF they want all variables, the abstract data table already has all the variables.   
-      } else if (input$columns %in% "All"){
+      } else if ("All" %in% input$columns){
         filtered_status()
       
       #Finally, this option selects all the columns that the person selected under the 'Individually' method    
