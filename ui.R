@@ -35,20 +35,18 @@ navbarPage("H2Data",
              div(fluidRow(column(12, 
                                  
                                  #Note where R-version of html is used
-                                 # 
+                                 
+                                 # Space for a note on the tool when needed:
                                  # wellPanel(
-                                 #   
-                                 #   tags$strong("January 5th, 2022: Due to recent changes to the DOL data portal, the data in this tool is incomplete for jobs posted after November 18th, 2021."),
-                                 #   "We are working to update the data in this tool as soon as possible and will post updates to this page. 
-                                 #           Complete data for jobs posted since November 18th, 2021 can still be accessed and downloaded from",
-                                 #   
-                                 #   tags$a(href = "https://spotlight.tcbmi.com/",
-                                 #          "https://spotlight.tcbmi.com/.", target = "_blank"),
-                                 #   
-                                 #   
+                                 # 
+                                 #   tags$strong("February 10th, 2023: Please note that this tool is missing data for all jobs posted between January 10th, 2023 and February 9th, 2023."),
+                                 #   "We are working to update the missing data as soon as possible and will post updates to this page.", 
+                                 # 
+                                 # 
                                  #   align = "center"
                                  # ),
                                  
+
                                  wellPanel(h2("This is a tool designed for farmworker advocates .", align = "center"),
                                            br(),
                                            

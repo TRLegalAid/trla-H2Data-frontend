@@ -8,7 +8,7 @@ dw <- config::get("db")
 
 #create the connection to the database
 con <- dbPool(RPostgres::Postgres(),
-                dbname = 'dcjvt05vuja5li',
+                dbname = 'd85r109v6kcqka',
                  host = dw$server,
                  port = dw$port,
                  user = dw$uid,
