@@ -11,6 +11,12 @@ old.R
 # Session Data files
 .RData
 
+# Rprofile
+.Rprofile
+
+# renv
+renv/
+
 # User-specific files
 .Ruserdata
 
@@ -45,3 +51,7 @@ docs/
 
 # translation temp files
 po/*~
+
+
+# Shapefile 
+www/
