@@ -1,0 +1,15 @@
+# Normalize text files
+* text=auto eol=lf
+
+# R / Shiny files
+*.R     text eol=lf
+*.Rmd   text eol=lf
+*.md    text eol=lf
+*.Rproj text eol=lf
+
+# Shell scripts
+*.sh    text eol=lf
+
+# Data files
+*.csv   text
+*.tsv   text
