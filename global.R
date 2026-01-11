@@ -8,7 +8,7 @@ dw <- config::get("db")
 
 #create the connection to the database
 con <- dbPool(RPostgres::Postgres(),
-                dbname = 'd85r109v6kcqka',
+                dbname = 'd996cqlmqpi0c6',
                  host = dw$server,
                  port = dw$port,
                  user = dw$uid,
@@ -79,12 +79,12 @@ diff <- setdiff(all_variables_la, all_variables)
 #Remove one subset of columns from job_central -- "remove" is generated in variable-lists
 
 fwdata_clean2 <- tbl(con, "job_central") %>%
-  select(-c(remove))
+  select(-any_of(remove))
 
 #Remove same subset of columns from low_accuracies; select only those that also belong in job_central
 
 fwdata_la2 <- tbl(con, "low_accuracies") %>%
-  select(-c(remove, all_of(diff))) %>%
+  select(-all_of(remove), -all_of(diff)) %>%
   filter(table == "central")
 
 #Merge job_central and low_accuracies so that each job is represented in table; turn job order links into hyperlinks; other formatting changes

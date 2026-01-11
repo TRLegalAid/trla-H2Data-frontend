@@ -24,18 +24,22 @@ library(shinyWidgets)
 library(shinyBS)
 library(shinyjs)
 library(collapsibleTree)
-library(config)
 library(tigris)
 library(readxl)
-
+library(sf)
 
 
 #This is all for the H-2A worker map portion of the tool
 
 STATES_matching <- read_excel("States_FIPS.xlsx")
 
-counties <- counties(cb = FALSE, class = "sf", options(tigris_use_cache = TRUE)) %>%
-  mutate(NAME = str_to_upper(NAME))
+# counties <- counties(cb = FALSE, class = "sf", options(tigris_use_cache = TRUE)) %>%
+#   mutate(NAME = str_to_upper(NAME))
+# 
+# # 4/7/25 - installed Kyler Walker's tigris patch, but can't redeploy and successfully download the Census data. Saving to www/ directory use use in deployed app.
+# st_write(counties, "www/counties_data.shp")
+
+counties <- st_read("www/counties_data.shp")
 
 months <- tibble(month = c("January","February","March","April", "May", "June", "July", "August", 
                            "September", "October", "November","December"),

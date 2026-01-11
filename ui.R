@@ -95,7 +95,7 @@ navbarPage("H2Data",
                  ,
                  selectInput("year",
                              "Select Year",
-                             choices = c("2021","2022", "2023", "2024"))
+                             choices = c("2021","2022", "2023", "2024", "2025", "2026"))
                  ,
                  selectInput("state",
                              "Select State",
